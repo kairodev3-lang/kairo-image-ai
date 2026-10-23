@@ -399,7 +399,7 @@ $("imageForm").addEventListener("submit", async e => {
     if (!res.ok) {
       if (res.status === 404) throw new Error("Le serveur /api/generate est introuvable. Vérifiez le déploiement sur Vercel.");
       if (res.status === 429) throw new Error("Trop de requêtes. Réessayez dans un instant.");
-      if (res.status === 401 || res.status === 403) throw new Error("Accès refusé par le service IA. Vérifiez la clé API.");
+      if (res.status === 401 || res.status === 403) throw new Error("Accès refusé par le service IA : " + (data.error || "vérifiez la clé API."));
       throw new Error(data.error || data.message || "Erreur " + res.status + ".");
     }
     if (!ct.includes("application/json")) throw new Error("Réponse inattendue du serveur.");
